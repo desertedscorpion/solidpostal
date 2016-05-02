@@ -4,7 +4,7 @@ echo -e "$(netstat -nr | grep "^0\.0\.0\.0" | awk '{print $2}')\tdockerhost" >> 
     export PATH=${PATH}:/opt/solidpostal
     for SCRIPT in /usr/local/src/*
     do
-	/usr/bin/sh ${SCRIPT} &&
+	/usr/bin/bash ${SCRIPT} &&
 	    true
     done &&
     true
