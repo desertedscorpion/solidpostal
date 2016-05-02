@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<slave>
+  <name>dockerhost</name>
+  <description></description>
+  <remoteFS>./jenkins-slave</remoteFS>
+  <numExecutors>1</numExecutors>
+  <mode>NORMAL</mode>
+  <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+  <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.10">
+    <host>dockerhost</host>
+    <port>22</port>
+    <credentialsId>79ad7607-ef6e-4e5f-a139-e633aded192b</credentialsId>
+    <maxNumRetries>0</maxNumRetries>
+    <retryWaitTime>0</retryWaitTime>
+  </launcher>
+  <label>dockerhost</label>
+  <nodeProperties/>
+  <userId>anonymous</userId>
+</slave>
