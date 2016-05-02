@@ -3,7 +3,7 @@
 docker build -t ninthgrimmercury/solidpostal . &&
     docker build -t freakygamma/solidpostal test &&
     docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro -p 127.0.0.1:28860:8080 freakygamma/solidpostal &&
-    sleep 10s &&
+    sleep 30s &&
     if curl http://127.0.0.1:28860 > /dev/null 2>&1
     then
 	echo the web page is up &&
