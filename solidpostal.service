@@ -1,0 +1,8 @@
+Unit]
+Description=solidpostal jenkins configuration
+
+[Service]
+ExecStart=/usr/local/sbin/solidpostal
+
+[Install]
+WantedBy=multi-user.target
