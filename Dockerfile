@@ -6,6 +6,7 @@ COPY bin/credentials.sh /opt/solidpostal/scripts/credentials
 COPY bin/ssh-key.sh /opt/solidpostal/scripts/ssh-key
 COPY bin/create-slave.sh /opt/solidpostal/scripts/create-slave
 COPY bin/create-job.sh /opt/solidpostal/scripts/create-job
+COPY bin/install-plugin.sh /opt/solidpostal/scripts/install-plugin
 RUN dnf update --assumeyes && dnf install --assumeyes jenkins* net-tools && dnf update --assumeyes && dnf clean all && systemctl enable jenkins.service && chmod 0500 /opt/solidpostal/service/solidpostal && systemctl enable solidpostal.service && chmod 0500 /opt/solidpostal/scripts/*
 EXPOSE 8080
 VOLUME /usr/local/src
