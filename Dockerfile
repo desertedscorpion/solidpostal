@@ -1,5 +1,5 @@
 FROM taf7lwappqystqp4u7wjsqkdc7dquw/needlessbeta
-RUN mkdir /opt/solidpostal/service && mkdir /opt/solidpostal/scripts
+RUN mkdir /opt/solidpostal && mkdir /opt/solidpostal/service && mkdir /opt/solidpostal/scripts
 COPY solidpostal.sh /opt/solidpostal/service/solidpostal
 COPY solidpostal.service /usr/lib/systemd/system/solidpostal.service
 COPY bin/credentials.sh /opt/solidpostal/scripts/credentials
