@@ -31,7 +31,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 66 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:8080/computer/slave/ > /dev/null 2>&1
+    if curl http://127.0.0.1:28860/computer/slave/ > /dev/null 2>&1
     then
 	echo the slave was added &&
 	    true
@@ -40,7 +40,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 67 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:8080/job/job/ > /dev/null 2>&1
+    if curl http://127.0.0.1:28860/job/job/ > /dev/null 2>&1
     then
 	echo the job was added &&
 	    true
