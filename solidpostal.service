@@ -4,7 +4,7 @@ Wants=jenkins.service
 After=jenkins.service
 
 [Service]
-ExecStart=/usr/local/sbin/solidpostal
+ExecStart=/opt/solidpostal/service/solidpostal
 
 [Install]
 WantedBy=multi-user.target
