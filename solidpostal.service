@@ -1,5 +1,7 @@
 [Unit]
 Description=solidpostal jenkins configuration
+Wants=jenkins.service
+After=jenkins.service
 
 [Service]
 ExecStart=/usr/local/sbin/solidpostal
