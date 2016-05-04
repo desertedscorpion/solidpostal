@@ -49,6 +49,16 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 68 &&
 	    true
     fi &&
+    if $(docker run --interactive freakygamma/solidpostal "[ -f /tmp/nosuchfile ]")
+    then
+	echo the plugin was added &&
+	    true
+    else
+	echo the plugin was not added &&
+	    exit 69 &&
+	    true
+    fi &&
+    #     /var/lib/jenkins/jobs/git/workspace/Dockerfile
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/solidpostal --format="{{.ID}}")) &&
     docker rmi --force freakygamma/solidpostal &&
     docker rmi --force ninthgrimmercury/solidpostal &&
