@@ -40,7 +40,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 67 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --header http://127.0.0.1:28860/job/job/ | head --lines 1) | tr -d "[:cntrl:]" ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --header http://127.0.0.1:28860/job/job/ | head --lines 1) | tr -d "[:cntrl:]") ]]
     then
 	echo the job was added &&
 	    true
