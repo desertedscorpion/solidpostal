@@ -10,5 +10,6 @@ COPY bin/install-plugin.sh /opt/solidpostal/scripts/install-plugin
 RUN dnf update --assumeyes && dnf install --assumeyes jenkins* net-tools && dnf update --assumeyes && dnf clean all && systemctl enable jenkins.service && chmod 0500 /opt/solidpostal/service/solidpostal && systemctl enable solidpostal.service && chmod 0500 /opt/solidpostal/scripts/*
 EXPOSE 8080
 VOLUME /usr/local/src
+VOLUME /var/private
 ADD http://central.maven.org/maven2/commons-codec/commons-codec/1.6/commons-codec-1.6.jar /usr/local/lib
 CMD ["/usr/sbin/init"]

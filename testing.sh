@@ -11,7 +11,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 64 &&
 	    true
     fi &&
-    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro -p 127.0.0.1:28860:8080 freakygamma/solidpostal &&
+    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.0.0.1:28860:8080 freakygamma/solidpostal &&
     sleep 30s &&
     if curl http://127.0.0.1:28860 > /dev/null 2>&1
     then
