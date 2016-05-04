@@ -22,7 +22,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 65 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/) ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ | head --lines 1) ]]
     then
 	echo the credentials were added &&
 	    true
@@ -31,7 +31,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 66 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/computer/slave/) ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/computer/slave/ | head --lines 1) ]]
     then
 	echo the slave was added &&
 	    true
@@ -40,7 +40,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 67 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/job/) ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/job/ | head --lines 1) ]]
     then
 	echo the job was added &&
 	    true
@@ -49,7 +49,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 68 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/git1/ws/Dockerfile/*view*/) ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/git1/ws/Dockerfile/*view*/ | head --lines 1) ]]
     then
 	echo "the plugin was probably added.  we triggered a job that depended on this plugin.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
