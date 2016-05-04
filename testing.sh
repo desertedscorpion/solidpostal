@@ -49,16 +49,15 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 68 &&
 	    true
     fi &&
-    if $(docker run --interactive freakygamma/solidpostal "[ -f /tmp/nosuchfile ]")
+    if $(docker run --interactive freakygamma/solidpostal "[ -f /var/lib/jenkins/jobs/git/workspace/Dockerfile ]")
     then
-	echo the plugin was added &&
+	echo "the plugin was probably added.  we triggered a job that depended on this plugin.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
     else
-	echo the plugin was not added &&
+	echo "the plugin was probably not added.  we triggered a job that depended on an installed plugin.  In order for /var/lib/jenkins/jobs/git/workspace/Dockerfile to exist, the job must succeed." &&
 	    exit 69 &&
 	    true
     fi &&
-    #     /var/lib/jenkins/jobs/git/workspace/Dockerfile
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/solidpostal --format="{{.ID}}")) &&
     docker rmi --force freakygamma/solidpostal &&
     docker rmi --force ninthgrimmercury/solidpostal &&
