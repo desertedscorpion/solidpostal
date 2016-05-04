@@ -13,7 +13,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
     fi &&
     docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.0.0.1:28860:8080 freakygamma/solidpostal &&
     sleep 30s &&
-    if curl http://127.0.0.1:28860 > /dev/null 2>&1
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860) ]]
     then
 	echo the web page is up &&
 	    true
@@ -22,7 +22,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 65 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:28860/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ > /dev/null 2>&1
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/) ]]
     then
 	echo the credentials were added &&
 	    true
@@ -31,7 +31,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 66 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:28860/computer/slave/ > /dev/null 2>&1
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/computer/slave/) ]]
     then
 	echo the slave was added &&
 	    true
@@ -40,7 +40,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 67 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:28860/job/job/ > /dev/null 2>&1
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/job/) ]]
     then
 	echo the job was added &&
 	    true
@@ -49,7 +49,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 68 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:28860/job/git1/ws/Dockerfile/*view*/ > /dev/null 2>&1
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/git1/ws/Dockerfile/*view*/) ]]
     then
 	echo "the plugin was probably added.  we triggered a job that depended on this plugin.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
@@ -58,7 +58,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 69 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:28860/job/git2/ws/Dockerfile/*view*/ > /dev/null 2>&1
+    if [[ "HTTP/1.1 200 OK" == $(curl http://127.0.0.1:28860/job/git2/ws/Dockerfile/*view*/) ]]
     then
 	echo "the key was added.  we triggered a job that depended on this key.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
