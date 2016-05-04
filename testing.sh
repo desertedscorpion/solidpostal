@@ -49,12 +49,21 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 68 &&
 	    true
     fi &&
-    if curl http://127.0.0.1:28860/job/git/ws/Dockerfile/*view*/ > /dev/null 2>&1
+    if curl http://127.0.0.1:28860/job/git1/ws/Dockerfile/*view*/ > /dev/null 2>&1
     then
 	echo "the plugin was probably added.  we triggered a job that depended on this plugin.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
     else
 	echo "the plugin was probably not added.  we triggered a job that depended on an installed plugin.  In order for /var/lib/jenkins/jobs/git/workspace/Dockerfile to exist, the job must succeed." &&
+	    exit 69 &&
+	    true
+    fi &&
+    if curl http://127.0.0.1:28860/job/git2/ws/Dockerfile/*view*/ > /dev/null 2>&1
+    then
+	echo "the key was added.  we triggered a job that depended on this key.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
+	    true
+    else
+	echo "the key was probably not added.  we triggered a job that depended on this key.  In order for /var/lib/jenkins/jobs/git/workspace/Dockerfile to exist, the job must succeed." &&
 	    exit 69 &&
 	    true
     fi &&
