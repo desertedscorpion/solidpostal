@@ -58,12 +58,12 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 69 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/git2/ws/Dockerfile/*view*/ | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/job2/ws/data.txt | tr -d "[:cntrl:]") ]]
     then
 	echo "the key was added.  we triggered a job that depended on this key.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
     else
-	echo "the key was probably not added.  we triggered a job that depended on this key.  In order for /var/lib/jenkins/jobs/git/workspace/Dockerfile to exist, the job must succeed." &&
+	echo "the key was probably not added.  we triggered a job that depended on this key.  In order for /var/lib/jenkins/jobs/git/workspace/Dockerfile to exist, the job must succeed (alternatively there is something wrong with the slave)." &&
 	    exit 69 &&
 	    true
     fi &&
