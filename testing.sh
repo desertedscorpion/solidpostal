@@ -12,7 +12,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    true
     fi &&
     docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.0.0.1:28860:8080 freakygamma/solidpostal &&
-    sleep 30s &&
+    sleep 5m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860 | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the web page is up &&
