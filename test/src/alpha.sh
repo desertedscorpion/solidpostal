@@ -6,5 +6,6 @@ credentials /usr/local/lib/credentials.xml &&
     create-job /usr/local/lib/job.xml &&
     create-job /usr/local/lib/git1.xml &&
     create-job /usr/local/lib/job2.xml &&
+    create-job /usr/local/lib/job3.xml &&
     install-plugin git &&
     true

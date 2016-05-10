@@ -68,6 +68,15 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 69 &&
 	    true
     fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/job3/ws/data.txt | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo "the build command works" &&
+	    true
+    else
+	echo "the build command does not work" &&
+	    exit 70 &&
+	    true
+    fi &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/solidpostal --format="{{.ID}}")) &&
     docker rmi --force freakygamma/solidpostal &&
     docker rmi --force ninthgrimmercury/solidpostal &&
