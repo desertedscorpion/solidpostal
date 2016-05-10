@@ -58,6 +58,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 69 &&
 	    true
     fi &&
+    sleep 5m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/job2/ws/data.txt | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo "the key was added.  we triggered a job that depended on this key.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
