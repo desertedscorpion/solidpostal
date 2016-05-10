@@ -14,7 +14,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo hello world</command>
+      <command>rm --recursive --force * &amp;&amp; echo hello world &gt; data.txt</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
