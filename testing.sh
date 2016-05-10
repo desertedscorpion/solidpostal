@@ -12,7 +12,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    true
     fi &&
     docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.0.0.1:28860:8080 freakygamma/solidpostal &&
-    sleep 10m &&
+    sleep 6m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860 | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the web page is up &&
@@ -49,7 +49,7 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 68 &&
 	    true
     fi &&
-    sleep 5m &&
+    sleep 6m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/git1/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo "the plugin was probably added.  we triggered a job that depended on this plugin.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
