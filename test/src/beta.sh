@@ -4,3 +4,4 @@ export CLASSPATH=/usr/share/jenkins/webroot/WEB-INF/jenkins-cli.jar:/usr/share/j
     dnf install --assumeyes git &&
     java hudson.cli.CLI -s http://127.0.0.1:8080 build git1 &&
     java hudson.cli.CLI -s http://127.0.0.1:8080 build job2 &&
+    true
