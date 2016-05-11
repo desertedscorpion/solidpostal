@@ -23,4 +23,5 @@ dnf install --assumeyes git &&
     touch b &&
     git add b &&
     git commit -am "added b" &&
+    side-line sidetest /srv
     true
