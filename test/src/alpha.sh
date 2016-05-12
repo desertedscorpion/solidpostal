@@ -19,9 +19,11 @@ dnf install --assumeyes git &&
     chmod u+x testing.sh &&
     git add a testing.sh &&
     git commit -am "added a testing" &&
+    git push origin master &&
     git checkout -b scratch-new &&
     touch b &&
     git add b &&
     git commit -am "added b" &&
+    git push origin scratch-new &&
     side-line sidetest /srv
     true

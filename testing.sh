@@ -77,6 +77,17 @@ docker build -t ninthgrimmercury/solidpostal . &&
 	    exit 70 &&
 	    true
     fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/git2/ws/b | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo "the side-line script works" &&
+	    true
+    else
+	echo "the side-line script does not work" &&
+	    exit 70 &&
+	    true
+    fi &&
+    echo PURPOSE FAILURE because the previous test should have failed &&
+    exit 71 &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/solidpostal --format="{{.ID}}")) &&
     docker rmi --force freakygamma/solidpostal &&
     docker rmi --force ninthgrimmercury/solidpostal &&
