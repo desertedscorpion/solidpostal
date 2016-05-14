@@ -14,7 +14,6 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    true
     fi &&
     docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.209.102.127:28056 freakygamma/solidpostal &&
-    exit 63 &&
     echo We are now sleeping for ${SLEEP} to allow the system to set itself up before we run tests.  If we ran tests immediately then all the tests would fail.
     sleep ${SLEEP} &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL} | head --lines 1 | tr -d "[:cntrl:]") ]]
