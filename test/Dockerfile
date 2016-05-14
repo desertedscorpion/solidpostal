@@ -1,3 +1,4 @@
 FROM ninthgrimmercury/solidpostal
-COPY lib/* /usr/local/lib/
+COPY bin/* /usr/scripts/bin
+COPY lib/* /opt/scripts/lib
 CMD ["/usr/sbin/init"]
