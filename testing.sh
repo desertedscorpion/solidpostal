@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_URL=http://127.209.102.127:28056 &&
+BASE_URL=127.209.102.127:28056 &&
     SLEEP=1m &&
     docker build -t ninthgrimmercury/solidpostal . &&
     docker build -t freakygamma/solidpostal test &&
@@ -13,10 +13,10 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 64 &&
 	    true
     fi &&
-    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.209.102.127:28056 freakygamma/solidpostal &&
-    echo We are now sleeping for ${SLEEP} to allow the system to set itself up before we run tests.  If we ran tests immediately then all the tests would fail.
+    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p ${BASE_URL} freakygamma/solidpostal &&
+    echo We are now sleeping for ${SLEEP} to allow the system to set itself up before we run tests.  If we ran tests immediately then all the tests would fail. &&
     sleep ${SLEEP} &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL} | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL} | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the web page is up &&
 	    true
@@ -25,7 +25,7 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 65 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL}/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL}/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the credentials were added &&
 	    true
@@ -34,7 +34,7 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 66 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL}/computer/slave/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL}/computer/slave/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the slave was added &&
 	    true
@@ -43,7 +43,7 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 67 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL}/job/job/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL}/job/job/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the job was added &&
 	    true
@@ -52,7 +52,7 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 68 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL}/job/git1/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL}/job/git1/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo "the plugin was probably added.  we triggered a job that depended on this plugin.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
@@ -61,7 +61,7 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 69 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL}/job/job2/ws/data.txt | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL}/job/job2/ws/data.txt | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo "the key was added.  we triggered a job that depended on this key.  In order for /var/libs/jenkins/jobs/git/workspace/Dockerfile to exist the job must have succeeded." &&
 	    true
@@ -70,7 +70,7 @@ BASE_URL=http://127.209.102.127:28056 &&
 	    exit 69 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head ${BASE_URL}/job/job3/ws/data.txt | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://${BASE_URL}/job/job3/ws/data.txt | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo "the build command works" &&
 	    true
